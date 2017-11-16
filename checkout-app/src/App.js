@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Cart from './Cart'
+import Receipt from './Receipt'
 
 class App extends Component {
 
@@ -34,13 +35,10 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-            <p>{this.state.products.eggs.price}</p>
+          <h1 className="App-title">Checkout App</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
           <Cart products={this.state.products} cart={this.state.cart}/>
+          <Receipt/>
       </div>
     );
   }

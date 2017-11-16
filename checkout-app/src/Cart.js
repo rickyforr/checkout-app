@@ -10,18 +10,19 @@ class Cart extends Component {
                     <div className="col">
                     <h1>Cart</h1>
                     <ul className="list-group">
-                        <li className="list-group-item">eggs
-                            <input type="text"/>
+                        <li className="list-group-item">
+                            <lable for="eggs">eggs</lable>
+                            <input type="number" id="eggs"/>
                             <button>add</button>
                             <button>remove</button>
                         </li>
                         <li className="list-group-item">cookies
-                            <input type="text"/>
+                            <input type="number"/>
                             <button>add</button>
                             <button>remove</button>
                         </li>
                         <li className="list-group-item">steak
-                            <input type="text"/>
+                            <input type="number"/>
                             <button>add</button>
                             <button>remove</button>
                         </li>
