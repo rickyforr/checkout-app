@@ -9,7 +9,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: {
+            'products': {
                 eggs: {
                      price: 3,
                      quantity: 20
@@ -23,13 +23,28 @@ class App extends Component {
                     quantity: 10
                 }
             },
-            cart: {
-                eggs: 2,
-                cookies: 1,
-                steak: 1
-            }
+            'cart': [
+                { id: 1, product:'eggs', quantity: 2 },
+                { id: 2, product: 'cookies', quantity: 1 },
+                { id: 3, product: 'steak', quantity: 1 }
+            ]
         }
     }
+
+   handleAddProduct = function (id, quantity) {
+        console.log('from App handleAdd', 'num:',quantity, 'id:',id);
+        const products = this.state.cart.map((product) => {
+            if (product.id === id) {
+                product.quantity = quantity;
+            }
+
+            return product;
+        });
+
+        console.log(products);
+       this.setState({'products': this.state.products, 'cart': products})
+       console.log(this.state)
+    };
 
     render() {
     return (
@@ -37,7 +52,9 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Checkout App</h1>
         </header>
-          <Cart products={this.state.products} cart={this.state.cart}/>
+          <div className="container-fluid">
+          {this.state.cart.map((cart) => <Cart cart={cart} key={cart.id}  handleAddProduct={(id, quantity) => this.handleAddProduct(id, quantity)}/> )}
+          </div>
           <Receipt/>
       </div>
     );

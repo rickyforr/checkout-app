@@ -2,32 +2,39 @@ import React, { Component } from 'react';
 import './App.css';
 
 class Cart extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { quantity: this.props.cart.quantity };
+        this.handleAddProduct = this.handleAddProduct.bind(this);
+        this.handleQuantity= this.handleQuantity.bind(this);
+    }
+
+   handleAddProduct = function (e) {
+       e.preventDefault();
+       console.log('The button was clicked.', this.state.quantity);
+       const num = this.state.quantity;
+       this.props.handleAddProduct(this.props.cart.id, num);
+    };
+
+    handleQuantity = function (e) {
+        console.log(e.target.value);
+        this.setState({quantity: e.target.value});
+        console.log('from handleQuantity', this.state)
+    };
 
     render() {
         return (
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col">
-                    <h1>Cart</h1>
+            <div className="row">
+                <div className="col">
                     <ul className="list-group">
                         <li className="list-group-item">
-                            <lable for="eggs">eggs</lable>
-                            <input type="number" id="eggs"/>
-                            <button>add</button>
-                            <button>remove</button>
-                        </li>
-                        <li className="list-group-item">cookies
-                            <input type="number"/>
-                            <button>add</button>
-                            <button>remove</button>
-                        </li>
-                        <li className="list-group-item">steak
-                            <input type="number"/>
-                            <button>add</button>
+                            <label>{this.props.cart.product}</label>
+                            <p>{this.props.cart.quantity}</p>
+                            <input type="number" onInput = {this.handleQuantity } defaultValue={this.props.cart.quantity}/>
+                            <button onClick={(e) => this.handleAddProduct(e) }>add</button>
                             <button>remove</button>
                         </li>
                     </ul>
-                    </div>
                 </div>
             </div>
         );

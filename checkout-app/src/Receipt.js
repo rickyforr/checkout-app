@@ -8,6 +8,7 @@ class Receipt extends Component {
             <div>
                 <h1>Receipt</h1>
                 <table className="table">
+                    <tbody>
                     <tr>
                         <th>Product</th>
                         <th>Price</th>
@@ -38,6 +39,7 @@ class Receipt extends Component {
                         <td>-</td>
                         <td>44</td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         );
