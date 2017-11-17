@@ -1,32 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Cart from './Cart'
 import Receipt from './Receipt'
 
 class App extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            'products': {
-                eggs: {
-                     price: 3,
-                     quantity: 20
-                },
-                cookies: {
-                     price: 5,
-                     quantity: 15
-                },
-                steaks: {
-                    price: 15,
-                    quantity: 10
-                }
+            "products": {
+                "eggs": { "price": 3, "quantity": 20 },
+                "cookies": { "price": 5, "quantity": 15 },
+                "steaks": { "price": 15, "quantity": 10 }
             },
-            'cart': [
-                { id: 1, product:'eggs', quantity: 2 },
-                { id: 2, product: 'cookies', quantity: 1 },
-                { id: 3, product: 'steak', quantity: 1 }
+            "cart": [
+                { "id": 1, "product": "eggs", "quantity": 2 },
+                { "id": 2, "product": "cookies", "quantity": 1 },
+                { "id": 3, "product": "steak", "quantity": 1 }
             ]
         }
     }
@@ -35,14 +24,11 @@ class App extends Component {
         console.log('from App handleAdd', 'num:',quantity, 'id:',id);
         const products = this.state.cart.map((product) => {
             if (product.id === id) {
-                product.quantity = quantity;
+                product.quantity = product.quantity + Number(quantity);
             }
-
             return product;
         });
-
-        console.log(products);
-       this.setState({'products': this.state.products, 'cart': products})
+       this.setState({'products': this.state.products, 'cart': products});
        console.log(this.state)
     };
 
@@ -53,9 +39,34 @@ class App extends Component {
           <h1 className="App-title">Checkout App</h1>
         </header>
           <div className="container-fluid">
-          {this.state.cart.map((cart) => <Cart cart={cart} key={cart.id}  handleAddProduct={(id, quantity) => this.handleAddProduct(id, quantity)}/> )}
+          {this.state.cart.map((cart) => <Cart inventory={this.state.products} cart={cart} key={cart.id}  handleAddProduct={(id, quantity) => this.handleAddProduct(id, quantity)}/> )}
           </div>
-          <Receipt/>
+          <h1>Receipt</h1>
+          <table className="table">
+              <tbody>
+              <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Total</th>
+              </tr>
+          {this.state.cart.map((cart) => <Receipt cart={cart} key={cart.id}/> )}
+              <tr>
+                  <td>Subtotal</td>
+                  <td>-</td>
+                  <td>94</td>
+              </tr>
+              <tr>
+                  <td>Discount</td>
+                  <td>-</td>
+                  <td>-5</td>
+              </tr>
+              <tr>
+                  <td>Total</td>
+                  <td>-</td>
+                  <td>44</td>
+              </tr>
+              </tbody>
+          </table>
       </div>
     );
   }

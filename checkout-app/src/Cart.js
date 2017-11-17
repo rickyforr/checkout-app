@@ -17,9 +17,16 @@ class Cart extends Component {
     };
 
     handleQuantity = function (e) {
-        console.log(e.target.value);
-        this.setState({quantity: e.target.value});
-        console.log('from handleQuantity', this.state)
+        console.log(e.target.max);
+        if (e.target.value < e.target.max)
+        {
+            this.setState({quantity: e.target.value});
+            console.log('from handleQuantity', this.state)
+        }
+        else {
+            const message = (<p>Too High</p>);
+            console.log(message)
+        }
     };
 
     render() {
@@ -29,8 +36,7 @@ class Cart extends Component {
                     <ul className="list-group">
                         <li className="list-group-item">
                             <label>{this.props.cart.product}</label>
-                            <p>{this.props.cart.quantity}</p>
-                            <input type="number" onInput = {this.handleQuantity } defaultValue={this.props.cart.quantity}/>
+                            <input type="number" max='10' onInput = {this.handleQuantity } placeholder='# to add to cart'/>
                             <button onClick={(e) => this.handleAddProduct(e) }>add</button>
                             <button>remove</button>
                         </li>
