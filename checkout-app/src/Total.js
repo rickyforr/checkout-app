@@ -8,13 +8,13 @@ class Total extends Component {
         this.state = {subtotal: 0};
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps() {
         const quantity = [];
         this.props.cart.forEach(function(element) {
             quantity.push(element.quantity);
         });
         const prices = [];
-        const inventory = this.props.inventory
+        const inventory = this.props.inventory;
         for (let product in inventory) {
             prices.push(inventory[product].price)
         }

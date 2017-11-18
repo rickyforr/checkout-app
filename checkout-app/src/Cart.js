@@ -12,7 +12,7 @@ class Cart extends Component {
         this.handleQuantity= this.handleQuantity.bind(this);
     }
     shouldComponentUpdate(nextState, nextProps) {
-        console.log('CART should update', nextProps, nextState)
+        console.log('CART should update', nextProps, nextState);
         return true
     }
 
@@ -20,7 +20,7 @@ class Cart extends Component {
        e.preventDefault();
        console.log('The button was clicked, adding to cart', this.state.quantity);
        const num = this.state.quantity;
-       this.props.handleAddProduct(this.props.cart.id, num);
+       this.props.handleAddProduct(this.props.cart.id, num, this.props.cart.product);
     };
 
     handleQuantity = function (e) {
@@ -36,13 +36,18 @@ class Cart extends Component {
         return (
             <div className="row">
                 <div className="col">
-                    <ul className="list-group">
+                    <ul >
                         <li className="list-group-item">
-                            <label>{this.props.cart.product}</label>
+                            <img src={this.props.cart.image} style={{width:80}}/>
+                            <label className="cart">{this.props.cart.product}</label>
+                            <button className="btn btn-danger cart">
+                                <i className="fa fa-minus" aria-hidden="true"/>
+                            </button>
                             <input type="number" max={this.state.inventory} onInput = {this.handleQuantity } placeholder='# to add to cart' />
-                            <button onClick={(e) => this.handleAddProduct(e) } disabled={add_button}>add</button>
-                            <button>remove</button>
-                            {message}
+                            <button className="btn btn-success cart" onClick={(e) => this.handleAddProduct(e) } disabled={add_button}>
+                                <i className="fa fa-plus" aria-hidden="true"/>
+                            </button>
+                            <span > {message} </span>
                         </li>
                     </ul>
                 </div>

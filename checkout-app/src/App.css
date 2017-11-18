@@ -15,7 +15,12 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  color: white;
+  letter-spacing: 2px;
+  font-size: 2em;
+  background: -webkit-linear-gradient(white, #cbd0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .App-intro {
@@ -26,6 +31,39 @@ th {
   text-align: center;
 }
 
+nav {
+  margin-bottom: 50px;
+  width: 100%;
+  max-height: 85px;
+}
+
+li {
+  margin: 0 100px 0 100px;
+}
+
+img.store-logo {
+  width: 50px;
+  float: left;
+}
+
+.date {
+  text-align: right;
+  color: white;
+}
+
+button.cart {
+  max-height: 30px;
+}
+
+label.cart {
+  color: #1175d8;
+  font-weight: bold;
+  margin: 5px;
+}
+
+input {
+  max-width: 50px;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
