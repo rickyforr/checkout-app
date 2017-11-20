@@ -24,13 +24,10 @@ export function updateInventory (item, quantity, inventoryObj) {
             obj[key] = inventoryObj[key];
             return obj;
         }, {});
-
     const copy = Object.assign({}, inventoryObj);
     copy[item].quantity = inventoryObj[item].quantity - quantity;
-    console.log('NEW COPY', copy);
 
-    let stateCopy = Object.assign({}, filtered, copy);
-
+    const stateCopy = Object.assign({}, filtered, copy);
     return stateCopy
 }
 
@@ -52,7 +49,7 @@ export function getDiscount (cart, inventory) {
     cart.forEach(function(element){
         for (let i in inventory) {
             if (i === element.product && inventory[i].sale) {
-                sum.push(inventory[i].sale * element.quantity)
+                sum.push((inventory[i].price - inventory[i].sale) * element.quantity)
             }
         }
     });

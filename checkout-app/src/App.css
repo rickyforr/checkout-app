@@ -54,6 +54,10 @@ div.cart-controls {
   margin-top: 5px;
 }
 
+div.cart-container {
+  max-width: 800px;
+}
+
 th {
   text-align: center;
 }

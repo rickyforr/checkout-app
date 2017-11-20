@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import AlertContainer from 'react-alert'
 
 class Cart extends Component {
     constructor(props) {
@@ -11,51 +12,61 @@ class Cart extends Component {
         this.handleAddProduct = this.handleAddProduct.bind(this);
         this.handleQuantity = this.handleQuantity.bind(this);
     }
-    shouldComponentUpdate(nextState, nextProps) {
-        console.log('CART should update', nextProps, nextState);
-        return true
-    }
 
     handleAddProduct = function (e) {
        e.preventDefault();
-       console.log('The button was clicked, adding to cart', this.state.quantity);
        const num = this.state.quantity;
        this.props.handleUpdateProduct(this.props.cart.id, num, this.props.cart.product);
     };
 
     handleRemoveProduct = function (e) {
        e.preventDefault();
-       console.log('The button was clicked, removing from cart', this.state.quantity);
        const num = -1 * this.state.quantity;
        this.props.handleUpdateProduct(this.props.cart.id, num, this.props.cart.product);
     };
 
-
     handleQuantity = function (e) {
         this.setState({quantity: e.target.value});
-        console.log('from handleQuantity', this.state)
+        const inventoryAmount = this.props.inventory[this.props.cart.product].quantity
+        if (e.target.value > inventoryAmount) {
+            this.showAlert(inventoryAmount);
+        }
+    };
+
+    showAlert = (inventory) => {
+        const message =  'Number exceeds inventory of ' + inventory;
+        this.msg.error(message, {
+            time: 2000,
+            type: 'error',
+
+        })
+    };
+
+    alertOptions = {
+        offset: 14,
+        position: 'top right',
+        theme: 'light',
+        time: 5000,
+        transition: 'scale'
     };
 
     render() {
-        console.log('quantity vs inventory ', Number(this.state.quantity) + ' ' + Number(this.props.cart.quantity) + ' ' + Number(this.state.inventory));
-        const message =  this.state.quantity > this.props.inventory[this.props.cart.product].quantity ?
-            <p className="alert-message">That amount exceeds our {this.props.cart.product} inventory</p> : <p className="alert-message"/>;
-        const addButton =  Number(this.state.quantity) + Number(this.props.cart.quantity) > this.state.inventory ||  Number(this.state.quantity) < 0 ?
+        const addButton =  this.props.inventory[this.props.cart.product].quantity <= 0 ||  Number(this.state.quantity) < 0 ?
             'disable' : '';
         const removeButton = Number(this.state.quantity) > Number(this.props.cart.quantity) ||  Number(this.state.quantity) < 0 ?
            'disable'  : '';
 
         return (
             <div className="row justify-content-center">
+                <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
                 <div className="col-3 image">
-                     <img src={this.props.cart.image} style={{width:80}}/>
+                     <img src={this.props.cart.image} style={{width:80}} alt={this.props.cart.product}/>
                      <span className="inventory"><p>{this.props.inventory[this.props.cart.product].quantity}</p></span>
                 </div>
                 <div className="col-1 label">
                     <label className="cart">{this.props.cart.product}</label>
                 </div>
                 <div className="col-5 cart-controls">
-                    {message}
                     <button className="btn btn-primary cart" onClick={(e) => this.handleRemoveProduct(e) } disabled={removeButton}>
                         <i className="fa fa-minus" aria-hidden="true"/>
                     </button>

@@ -12,7 +12,7 @@ class App extends Component {
         super(props);
         this.state = {
             "inventory": {
-                "eggs": {"price": 3, "quantity": 20,  "sale": 1.50},
+                "eggs": {"price": 3, "quantity": 20,  "sale": 1},
                 "cookies": {"price": 5, "quantity": 15},
                 "steak": {"price": 15, "quantity": 10}
             },
@@ -27,11 +27,11 @@ class App extends Component {
     }
 
     showAlert = (quantity) => {
-       const message =  quantity > 0 ? quantity + 'Item(s) Added To Cart' : quantity * -1 + 'Item(s) Removed From Cart';
+       const message =  quantity > 0 ? quantity + ' Item(s) Added To Cart' : quantity * -1 + ' Item(s) Removed From Cart';
         this.msg.show(message, {
             time: 2000,
             type: 'success',
-            icon: <img src="path/to/some/img/32x32.png" />
+
         })
     };
 
@@ -44,11 +44,11 @@ class App extends Component {
     };
 
    handleUpdateProduct = function (id, quantity, item) {
-       const updatedCart = updateCart(this.state.cart, this.state.inventory, quantity, id);
-       const updatedInventory = updateInventory(item, quantity, this.state.inventory);
        if (quantity) {
            this.showAlert(quantity);
        }
+       const updatedCart = updateCart(this.state.cart, this.state.inventory, quantity, id);
+       const updatedInventory = updateInventory(item, quantity, this.state.inventory);
        const updatedTotal = getSubtotal(updatedCart, updatedInventory);
        const updatedDiscount = getDiscount(updatedCart, updatedInventory);
        this.setState({ "inventory": updatedInventory,'cart': updatedCart, 'subtotal': updatedTotal, 'discount': updatedDiscount});
@@ -59,7 +59,7 @@ class App extends Component {
       <div className="App">
           <Header/>
           <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
-          <div className="container-fluid">
+          <div className="container-fluid cart-container">
           {this.state.cart.map((cart) => <Cart
               inventory={this.state.inventory}
               cart={cart} key={cart.id}

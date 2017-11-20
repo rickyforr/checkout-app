@@ -11,17 +11,17 @@ class Total extends Component {
                 <tr>
                     <td>Subtotal</td>
                     <td>-</td>
-                    <td>{this.props.subtotal}</td>
+                    <td>${this.props.subtotal}</td>
                 </tr>
                 <tr>
                     <td>Discount</td>
                     <td>-</td>
-                    <td>-{this.props.discount}</td>
+                    <td>-${this.props.discount}</td>
                 </tr>
                 <tr>
                     <td>Total</td>
                     <td>-</td>
-                    <td>{this.props.subtotal - this.props.discount}</td>
+                    <td>${this.props.subtotal - this.props.discount}</td>
                 </tr>
                 </tbody>
                 </table>
