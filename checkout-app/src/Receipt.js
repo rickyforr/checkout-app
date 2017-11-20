@@ -15,7 +15,7 @@ componentWillReceiveProps() {
 
 render() {
         const sale = this.props.inventory[this.props.cart.product].sale && this.props.cart.quantity ?  <p>Sale ${this.props.inventory[this.props.cart.product].sale}</p> : <p/>;
-        const discount = this.props.inventory[this.props.cart.product].sale  && this.props.cart.quantity ? <p>-{this.props.inventory[this.props.cart.product].sale * this.props.cart.quantity}</p> : '';
+        const discount = this.props.inventory[this.props.cart.product].sale  && this.props.cart.quantity ? <p>-{(this.props.inventory[this.props.cart.product].price - this.props.inventory[this.props.cart.product].sale) * this.props.cart.quantity}</p> : '';
         return (
             <tr>
                 <td>{this.props.cart.product}</td>
