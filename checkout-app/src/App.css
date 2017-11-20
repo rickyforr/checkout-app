@@ -27,19 +27,52 @@
   font-size: large;
 }
 
+div.image {
+  border-top: solid 0.5px #D3D3D3;
+  border-left: solid 0.5px #D3D3D3;
+  border-bottom: solid 0.5px #D3D3D3;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  margin-top: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  min-height: 70px;
+}
+div.label {
+  border-top: solid 0.5px #D3D3D3;
+  border-bottom: solid 0.5px #D3D3D3;
+  margin-top: 5px;
+  padding-top: 15px;
+}
+div.cart-controls {
+  border-top: solid 0.5px #D3D3D3;
+  border-right: solid 0.5px #D3D3D3;
+  border-bottom: solid 0.5px #D3D3D3;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  padding-top: 15px;
+  margin-top: 5px;
+}
+
 th {
   text-align: center;
 }
 
+tr.receipt-table {
+  color: white;
+}
+
+/*
 nav {
   margin-bottom: 50px;
   width: 100%;
   max-height: 85px;
+  background: #1175d8; /* For browsers that do not support gradients
+  background: -webkit-linear-gradient(#1175d8, #1b3857);
+  background: -moz-linear-gradient(#1175d8, #1b3857);
+  background: linear-gradient(#1175d8, #1b3857);
 }
-
-li {
-  margin: 0 100px 0 100px;
-}
+*/
 
 img.store-logo {
   width: 50px;
@@ -61,9 +94,58 @@ label.cart {
   margin: 5px;
 }
 
+span.inventory {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: white;
+  width: 20px;
+  height: 20px;
+  background: #1175d8;
+  border-top-left-radius: 2px;
+  border-bottom-right-radius: 5px;
+  -moz-box-shadow:   0 3px 5px 0 #ccc;
+  -webkit-box-shadow: 0 3px 5px 0 #ccc;
+  box-shadow:         0 3px 5px 0 #ccc;
+}
+span.inventory > p {
+  font-size: .8em;
+}
+
 input {
   max-width: 50px;
 }
+input:focus {
+ outline: none;
+  border: 1px solid #1175d8
+}
+
+p.alert-message {
+  color: tomato;
+  font-size: .7em;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.brand {
+  color: white;
+}
+
+
+
+table.table {
+  max-width: 600px;
+  margin: auto;
+}
+
+@media only screen and (max-width: 500px) {
+  li.cart {
+    display: block;
+    margin: auto;
+  }
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
