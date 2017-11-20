@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import AlertContainer from 'react-alert'
+
 import './App.css';
 import Cart from './Cart'
 import Receipt from './Receipt'
 import Total from './Total'
 import { updateInventory, updateCart, getSubtotal, getDiscount }from './state-functions'
 import Header from "./Header";
-import AlertContainer from 'react-alert'
 
 class App extends Component {
     constructor(props) {

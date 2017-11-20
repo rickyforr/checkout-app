@@ -44,6 +44,14 @@ div.label {
   margin-top: 5px;
   padding-top: 15px;
 }
+
+@media only screen and (max-width: 500px) {
+  div.label {
+    font-size: 0.7em;
+    max-width: 50px;
+  }
+}
+
 div.cart-controls {
   border-top: solid 0.5px #D3D3D3;
   border-right: solid 0.5px #D3D3D3;
@@ -56,6 +64,12 @@ div.cart-controls {
 
 div.cart-container {
   max-width: 800px;
+}
+
+@media only screen and (max-width: 500px) {
+  button {
+    width: 5px;
+  }
 }
 
 th {

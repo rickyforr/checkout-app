@@ -9,23 +9,21 @@ class Cart extends Component {
             quantity: this.props.cart.quantity,
             inventory: this.props.inventory[this.props.cart.product].quantity,
         };
-        this.handleAddProduct = this.handleAddProduct.bind(this);
-        this.handleQuantity = this.handleQuantity.bind(this);
     }
 
-    handleAddProduct = function (e) {
+    handleAddProduct =  (e) => {
        e.preventDefault();
        const num = this.state.quantity;
        this.props.handleUpdateProduct(this.props.cart.id, num, this.props.cart.product);
     };
 
-    handleRemoveProduct = function (e) {
+    handleRemoveProduct = (e) => {
        e.preventDefault();
        const num = -1 * this.state.quantity;
        this.props.handleUpdateProduct(this.props.cart.id, num, this.props.cart.product);
     };
 
-    handleQuantity = function (e) {
+    handleQuantity = (e) => {
         this.setState({quantity: e.target.value});
         const inventoryAmount = this.props.inventory[this.props.cart.product].quantity
         if (e.target.value > inventoryAmount) {
@@ -51,7 +49,7 @@ class Cart extends Component {
     };
 
     render() {
-        const addButton =  this.props.inventory[this.props.cart.product].quantity <= 0 ||  Number(this.state.quantity) < 0 ?
+        const addButton =  this.props.inventory[this.props.cart.product].quantity <= this.state.quantity ||  Number(this.state.quantity) < 0 ?
             'disable' : '';
         const removeButton = Number(this.state.quantity) > Number(this.props.cart.quantity) ||  Number(this.state.quantity) < 0 ?
            'disable'  : '';
