@@ -35,23 +35,30 @@ export function updateInventory (item, quantity, inventoryObj) {
 }
 
 export function getSubtotal (cart, inventory) {
-    const quantity = [];
-    cart.forEach(function (element) {
-        quantity.push(element.quantity);
+    const sum = [];
+    cart.forEach(function(element){
+        for (let i in inventory) {
+            if (i === element.product) {
+                sum.push(inventory[i].price * element.quantity)
+            }
+        }
     });
-    console.log('FROM GETSUBTOTAL quantity', quantity);
-
-    const prices = [];
-    for (let product in inventory) {
-        prices.push(inventory[product].price)
-    }
-    console.log('FROM GETSUBTOTAL price', prices);
-
-    let sum = 0;
-    for (let i = 0; i < quantity.length; i++) {
-        sum += quantity[i] * prices[i];
-    }
-    return sum
+    const total = sum.reduce((sum, value) => sum + value, 0);
+    return total;
 }
+
+export function getDiscount (cart, inventory) {
+    const sum = [];
+    cart.forEach(function(element){
+        for (let i in inventory) {
+            if (i === element.product && inventory[i].sale) {
+                sum.push(inventory[i].sale * element.quantity)
+            }
+        }
+    });
+    const total = sum.reduce((sum, value) => sum + value, 0);
+    return total;
+}
+
 
 

@@ -3,10 +3,9 @@ import './App.css';
 import Cart from './Cart'
 import Receipt from './Receipt'
 import Total from './Total'
-import { updateInventory, updateCart }from './state-functions'
+import { updateInventory, updateCart, getSubtotal, getDiscount }from './state-functions'
 import Header from "./Header";
 import AlertContainer from 'react-alert'
-
 
 class App extends Component {
     constructor(props) {
@@ -22,12 +21,13 @@ class App extends Component {
                 {"id": 2, "product": "cookies", "quantity": 0, "image": 'http://d111vui60acwyt.cloudfront.net/product_photos/33961854/smart_20cookie_20pic_20copy_original.jpg'},
                 {"id": 3, "product": "steak", "quantity": 0, "image": 'http://static.seriouseats.com/1/braestar/live/pages/steak/images/ribeye.png'}
             ],
-            "subtotal": 0
+            "subtotal": 0,
+            "discount": 0
         }
     }
 
     showAlert = (quantity) => {
-       const message =  quantity > 0 ? 'Item(s) Added To Cart' : 'Item(s) Removed From Cart';
+       const message =  quantity > 0 ? quantity + 'Item(s) Added To Cart' : quantity * -1 + 'Item(s) Removed From Cart';
         this.msg.show(message, {
             time: 2000,
             type: 'success',
@@ -48,15 +48,11 @@ class App extends Component {
        const updatedInventory = updateInventory(item, quantity, this.state.inventory);
        if (quantity) {
            this.showAlert(quantity);
-           console.log('HOW MUCH IM ADDING', quantity);
        }
-       this.setState({ "inventory": updatedInventory,'cart': updatedCart });
+       const updatedTotal = getSubtotal(updatedCart, updatedInventory);
+       const updatedDiscount = getDiscount(updatedCart, updatedInventory);
+       this.setState({ "inventory": updatedInventory,'cart': updatedCart, 'subtotal': updatedTotal, 'discount': updatedDiscount});
     };
-
-   handleTotal = function (total) {
-       this.setState({ "subtotal": total })
-       console.log('HANDLETOTAL!!!!', total)
-   };
 
     render() {
     return (
@@ -81,11 +77,15 @@ class App extends Component {
               {this.state.cart.map((cart) => <Receipt
                   cart={cart} key={cart.id}
                   inventory={this.state.inventory}
-                  handleTotal={(total) => this.handleTotal(total)}
               /> )}
               </tbody>
           </table>
-          <Total cart={this.state.cart} inventory={this.state.inventory} total={this.state.total}/>
+          <Total
+              cart={this.state.cart}
+              inventory={this.state.inventory}
+              subtotal={this.state.subtotal}
+              discount={this.state.discount}
+          />
       </div>
     );
   }

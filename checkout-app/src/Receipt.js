@@ -10,8 +10,11 @@ class Receipt extends Component {
 componentWillReceiveProps() {
     const total = this.props.cart.quantity * this.props.inventory[this.props.cart.product].price;
     this.setState({ subtotal: total });
-    this.props.handleTotal(total);
-    return true
+    return false
+}
+
+componentDidMount() {
+    console.log('componentDid***', this.state.subtotal )
 }
 
 render() {
@@ -23,7 +26,8 @@ render() {
                 <td>{this.props.cart.quantity} @ ${this.props.inventory[this.props.cart.product].price}
                     {sale}
                 </td>
-                <td><input value={this.state.subtotal}/>
+                <td>
+                    {this.state.subtotal}
                     {discount}
                 </td>
             </tr>
