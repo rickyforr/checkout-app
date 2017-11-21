@@ -12,15 +12,41 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            "inventory": {
-                "eggs": {"price": 3, "quantity": 20,  "sale": 1},
-                "cookies": {"price": 5, "quantity": 15},
-                "steak": {"price": 15, "quantity": 10}
-            },
             "cart": [
-                {"id": 1, "product": "eggs", "quantity": 0, "image": 'http://www.eatbydate.com/wp-content/uploads/Eggs1.jpg'},
-                {"id": 2, "product": "cookies", "quantity": 0, "image": 'http://d111vui60acwyt.cloudfront.net/product_photos/33961854/smart_20cookie_20pic_20copy_original.jpg'},
-                {"id": 3, "product": "steak", "quantity": 0, "image": 'http://static.seriouseats.com/1/braestar/live/pages/steak/images/ribeye.png'}
+                {
+                    "id": 1,
+                    "product": "eggs",
+                    "quantity": 0,
+                    "image": 'http://www.eatbydate.com/wp-content/uploads/Eggs1.jpg',
+                    "price": 3,
+                    "inventory": 20,
+                    "sale": 1,
+                    "discount": {
+                        "type": "SALE"
+                    }
+                },
+                {
+                    "id": 2,
+                    "product": "cookies",
+                    "quantity": 0,
+                    "image": 'http://d111vui60acwyt.cloudfront.net/product_photos/33961854/smart_20cookie_20pic_20copy_original.jpg',
+                    "price": 5,
+                    "inventory": 15,
+                    "discount": {
+                        "type": "2FOR1"
+                    }
+                },
+                {
+                    "id": 3,
+                    "product": "steak",
+                    "quantity": 0,
+                    "image": 'http://static.seriouseats.com/1/braestar/live/pages/steak/images/ribeye.png',
+                    "price": 15,
+                    "inventory": 10,
+                    "discount": {
+                        "type": null
+                    }
+                }
             ],
             "subtotal": 0,
             "discount": 0
@@ -48,11 +74,12 @@ class App extends Component {
        if (quantity) {
            this.showAlert(quantity);
        }
-       const updatedCart = updateCart(this.state.cart, this.state.inventory, quantity, id);
-       const updatedInventory = updateInventory(item, quantity, this.state.inventory);
-       const updatedTotal = getSubtotal(updatedCart, updatedInventory);
-       const updatedDiscount = getDiscount(updatedCart, updatedInventory);
-       this.setState({ "inventory": updatedInventory,'cart': updatedCart, 'subtotal': updatedTotal, 'discount': updatedDiscount});
+       const updatedCart = updateCart(this.state.cart, quantity, id);
+       // const updatedInventory = updateInventory(item, quantity, this.state.inventory);
+       const updatedTotal = getSubtotal(updatedCart);
+       const updatedDiscount = getDiscount(updatedCart, quantity);
+       console.log(updatedDiscount);
+       this.setState({ 'cart': updatedCart, 'subtotal': updatedTotal, 'discount': updatedDiscount});
     };
 
     render() {

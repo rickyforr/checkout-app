@@ -7,7 +7,7 @@ class Cart extends Component {
         super(props);
         this.state = {
             quantity: this.props.cart.quantity,
-            inventory: this.props.inventory[this.props.cart.product].quantity,
+            inventory: this.props.cart.inventory,
         };
     }
 
@@ -25,7 +25,7 @@ class Cart extends Component {
 
     handleQuantity = (e) => {
         this.setState({quantity: e.target.value});
-        const inventoryAmount = this.props.inventory[this.props.cart.product].quantity
+        const inventoryAmount = this.props.cart.inventory;
         if (e.target.value > inventoryAmount) {
             this.showAlert(inventoryAmount);
         }
@@ -49,9 +49,9 @@ class Cart extends Component {
     };
 
     render() {
-        const addButton =  this.props.inventory[this.props.cart.product].quantity <= this.state.quantity ||  Number(this.state.quantity) < 0 ?
+        const addButton =  this.props.cart.inventory < this.state.quantity ||  Number(this.state.quantity) <= 0 ?
             'disable' : '';
-        const removeButton = Number(this.state.quantity) > Number(this.props.cart.quantity) ||  Number(this.state.quantity) < 0 ?
+        const removeButton = Number(this.state.quantity) > Number(this.props.cart.quantity) ||  Number(this.state.quantity) <= 0 ?
            'disable'  : '';
 
         return (
@@ -59,7 +59,7 @@ class Cart extends Component {
                 <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
                 <div className="col-3 image">
                      <img src={this.props.cart.image} style={{width:80}} alt={this.props.cart.product}/>
-                     <span className="inventory"><p>{this.props.inventory[this.props.cart.product].quantity}</p></span>
+                     <span className="inventory"><p>{this.props.cart.inventory}</p></span>
                 </div>
                 <div className="col-1 label">
                     <label className="cart">{this.props.cart.product}</label>
@@ -68,7 +68,7 @@ class Cart extends Component {
                     <button className="btn btn-primary cart" onClick={(e) => this.handleRemoveProduct(e) } disabled={removeButton}>
                         <i className="fa fa-minus" aria-hidden="true"/>
                     </button>
-                    <input type="number" max={this.state.inventory} min={0} onInput = {this.handleQuantity} placeholder='#' value={this.state.quantity}/>
+                    <input type="number" max={this.props.cart.inventory} min={0} onInput = {this.handleQuantity} placeholder='#' value={this.state.quantity}/>
                     <button className="btn btn-primary cart" onClick={(e) => this.handleAddProduct(e) } disabled={addButton}>
                         <i className="fa fa-plus" aria-hidden="true"/>
                     </button>

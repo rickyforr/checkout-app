@@ -1,61 +1,49 @@
-export function updateCart (cartObj, inventoryObj, quantity, id) {
-    const products = cartObj.map((product) => {
-        if (product.id === id) {
-            const total = product.quantity + Number(quantity);
-            if (total <= inventoryObj[product.product].quantity) {
+export function updateCart (cartObj, quantity, id) {
+   const cart = cartObj.map((product) => {
+       if (product.id === id) {
+           if (quantity <= product.inventory) {
                 product.quantity = product.quantity + Number(quantity);
+                product.inventory = product.inventory - Number(quantity);
             }
         }
         return product;
     });
-    return products
+   return cart
 }
 
-export function updateInventory (item, quantity, inventoryObj) {
-    const filterItem = [];
-    for (let i in inventoryObj) {
-        if (i !== item) {
-            filterItem.push(i)
-        }
-    }
-    const filtered = Object.keys(inventoryObj)
-        .filter(key => filterItem.includes(key))
-        .reduce((obj, key) => {
-            obj[key] = inventoryObj[key];
-            return obj;
-        }, {});
-    const copy = Object.assign({}, inventoryObj);
-    copy[item].quantity = inventoryObj[item].quantity - quantity;
-
-    const stateCopy = Object.assign({}, filtered, copy);
-    return stateCopy
-}
-
-export function getSubtotal (cart, inventory) {
+export function getSubtotal (cart) {
     const sum = [];
     cart.forEach(function(element){
-        for (let i in inventory) {
-            if (i === element.product) {
-                sum.push(inventory[i].price * element.quantity)
-            }
+        sum.push(element.price * element.quantity)
+    });
+    return sum.reduce((sum, value) => sum + value, 0);
+}
+
+export function getDiscountType (cart) {
+    const sum = [];
+    cart.forEach(function(element){
+        if (element.sale) {
+            sum.push((element.price - element.sale) * element.quantity)
+        }
+    });
+    return sum.reduce((sum, value) => sum + value, 0);
+}
+
+export function getDiscount (cart, quantity) {
+    const sum = [];
+    cart.forEach(function(element) {
+        switch (element.discount.type) {
+            case 'SALE':
+                if (element.sale) {
+                    sum.push((element.price - element.sale) * element.quantity)
+                }
+                break;
+            case '2FOR1':
+                console.log(quantity);
+                break;
         }
     });
     const total = sum.reduce((sum, value) => sum + value, 0);
+    console.log('SALE CASE', total);
     return total;
 }
-
-export function getDiscount (cart, inventory) {
-    const sum = [];
-    cart.forEach(function(element){
-        for (let i in inventory) {
-            if (i === element.product && inventory[i].sale) {
-                sum.push((inventory[i].price - inventory[i].sale) * element.quantity)
-            }
-        }
-    });
-    const total = sum.reduce((sum, value) => sum + value, 0);
-    return total;
-}
-
-
-

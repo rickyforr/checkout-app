@@ -2,31 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  color: white;
-  letter-spacing: 2px;
-  font-size: 2em;
-  background: -webkit-linear-gradient(white, #cbd0ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.App-intro {
-  font-size: large;
-}
-
 div.image {
   border-top: solid 0.5px #D3D3D3;
   border-left: solid 0.5px #D3D3D3;
@@ -38,6 +13,7 @@ div.image {
   padding-bottom: 15px;
   min-height: 70px;
 }
+
 div.label {
   border-top: solid 0.5px #D3D3D3;
   border-bottom: solid 0.5px #D3D3D3;
@@ -80,17 +56,9 @@ tr.receipt-table {
   color: white;
 }
 
-/*
 nav {
   margin-bottom: 50px;
-  width: 100%;
-  max-height: 85px;
-  background: #1175d8; /* For browsers that do not support gradients
-  background: -webkit-linear-gradient(#1175d8, #1b3857);
-  background: -moz-linear-gradient(#1175d8, #1b3857);
-  background: linear-gradient(#1175d8, #1b3857);
 }
-*/
 
 img.store-logo {
   width: 50px;
@@ -126,15 +94,18 @@ span.inventory {
   -webkit-box-shadow: 0 3px 5px 0 #ccc;
   box-shadow:         0 3px 5px 0 #ccc;
 }
+
 span.inventory > p {
   font-size: .8em;
 }
 
 input {
   max-width: 50px;
+  text-align: center;
 }
+
 input:focus {
- outline: none;
+  outline: none;
   border: 1px solid #1175d8
 }
 
@@ -150,21 +121,17 @@ p.alert-message {
   color: white;
 }
 
-
-
 table.table {
   max-width: 600px;
   margin: auto;
 }
 
-@media only screen and (max-width: 500px) {
-  li.cart {
-    display: block;
-    margin: auto;
-  }
-}
-
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.promo {
+  font-size: 0.8em;
+  font-style: italic;
 }
