@@ -16,7 +16,7 @@ class Total extends Component {
                 <tr>
                     <td>Discount</td>
                     <td>-</td>
-                    <td>-${this.props.discount}</td>
+                    <td className="promo">-${this.props.discount}</td>
                 </tr>
                 <tr>
                     <td>Total</td>

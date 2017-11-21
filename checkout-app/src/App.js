@@ -58,7 +58,6 @@ class App extends Component {
         this.msg.show(message, {
             time: 2000,
             type: 'success',
-
         })
     };
 
@@ -70,52 +69,50 @@ class App extends Component {
         transition: 'scale'
     };
 
-   handleUpdateProduct = function (id, quantity, item) {
+   handleUpdateProduct = function (id, quantity) {
        if (quantity) {
            this.showAlert(quantity);
        }
        const updatedCart = updateCart(this.state.cart, quantity, id);
-       // const updatedInventory = updateInventory(item, quantity, this.state.inventory);
        const updatedTotal = getSubtotal(updatedCart);
-       const updatedDiscount = getDiscount(updatedCart, quantity);
-       console.log(updatedDiscount);
+       const updatedDiscount = getDiscount(updatedCart);
        this.setState({ 'cart': updatedCart, 'subtotal': updatedTotal, 'discount': updatedDiscount});
     };
 
-    render() {
-    return (
-      <div className="App">
-          <Header/>
-          <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
-          <div className="container-fluid cart-container">
-          {this.state.cart.map((cart) => <Cart
-              inventory={this.state.inventory}
-              cart={cart} key={cart.id}
-              handleUpdateProduct={(id, quantity, item) => this.handleUpdateProduct(id, quantity, item)}
-          /> )}
+   render() {
+        return (
+            <div className="App">
+                  <Header/>
+                  <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
+                  <div className="container-fluid cart-container">
+                  {this.state.cart.map((cart) => <Cart
+                      inventory={this.state.inventory}
+                      cart={cart} key={cart.id}
+                      handleUpdateProduct={(id, quantity) => this.handleUpdateProduct(id, quantity)}
+                  /> )}
+                  </div>
+                  <br/>
+                  <table className="table table-bordered">
+                      <tbody>
+                      <tr className="bg-primary receipt-table">
+                          <th>Product</th>
+                          <th>Price</th>
+                          <th>Total</th>
+                      </tr>
+                      {this.state.cart.map((cart) => <Receipt
+                          cart={cart} key={cart.id}
+                          inventory={this.state.inventory}
+                      /> )}
+                      </tbody>
+                  </table>
+                  <Total
+                      cart={this.state.cart}
+                      inventory={this.state.inventory}
+                      subtotal={this.state.subtotal}
+                      discount={this.state.discount}
+                  />
           </div>
-          <br/>
-          <table className="table table-bordered">
-              <tbody>
-              <tr className="bg-primary receipt-table">
-                  <th>Product</th>
-                  <th>Price</th>
-                  <th>Total</th>
-              </tr>
-              {this.state.cart.map((cart) => <Receipt
-                  cart={cart} key={cart.id}
-                  inventory={this.state.inventory}
-              /> )}
-              </tbody>
-          </table>
-          <Total
-              cart={this.state.cart}
-              inventory={this.state.inventory}
-              subtotal={this.state.subtotal}
-              discount={this.state.discount}
-          />
-      </div>
-    );
-  }
+        );
+    }
 }
 export default App;
