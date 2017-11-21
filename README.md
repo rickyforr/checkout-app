@@ -19,6 +19,7 @@ The Total component displays the total discount, subtotal and total. The Header 
 
 ## Dependancies
 react-alerts was used to display messages that enhance the UX. A user will be prompted on success of adding and removing from the cart as well as displayed warnings when the quantity entered exceeds the inventory for that product.
+Most of the styling was done using Bootstrap 4 as well as some costume CSS contained in the App.css file.
 
 ## Getting Started
 clone repository and run `npm start` from the command line 
