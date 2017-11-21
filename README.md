@@ -2,7 +2,7 @@
 
 ## Synopsis
 FoodJS is a simple but elegant automated checkout system built using ReactJS.
-The app was built using create-react-app. For more information on it see [here](https://github.com/facebookincubator/create-react-app)
+The app was built using create-react-app. Find more information on create-react-app [here](https://github.com/facebookincubator/create-react-app)
 
 ## Architecture
 Most of the state of the application is managed in the App container. I set up an array of objects representing items in a cart at checkout. Each object contains all properties relavent to the product (price, quanitiy in cart, quantity in inventory...etc). 
