@@ -54,7 +54,7 @@ class Cart extends Component {
             'disable'  : '';
 
         return (
-            <div className="row justify-content-center">
+            <div className="row justify-content-center product">
                 <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
                 <div className="col-3 image">
                      <img src={this.props.cart.image} style={{width:80}} alt={this.props.cart.product}/>
@@ -64,11 +64,11 @@ class Cart extends Component {
                     <label className="cart">{this.props.cart.product}</label>
                 </div>
                 <div className="col-5 cart-controls">
-                    <button className="btn btn-primary cart" onClick={(e) => this.handleRemoveProduct(e) } disabled={removeButton}>
+                    <button className="btn btn-primary cart remove" onClick={(e) => this.handleRemoveProduct(e) } disabled={removeButton}>
                         <i className="fa fa-minus" aria-hidden="true"/>
                     </button>
                     <input type="number" max={this.props.cart.inventory} min={0} onInput = {this.handleQuantity} placeholder='#' value={this.state.quantity}/>
-                    <button className="btn btn-primary cart" onClick={(e) => this.handleAddProduct(e) } disabled={addButton}>
+                    <button className="btn btn-primary cart add" onClick={(e) => this.handleAddProduct(e) } disabled={addButton}>
                         <i className="fa fa-plus" aria-hidden="true"/>
                     </button>
                 </div>

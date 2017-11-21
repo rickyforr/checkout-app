@@ -60,7 +60,7 @@ class Receipt extends Component {
 
     render() {
         return (
-            <tr>
+            <tr className="table-dark">
                 <td>{this.props.cart.product}</td>
                 <td >{this.props.cart.quantity} @ ${this.props.cart.price}
                     {this.saleType()}

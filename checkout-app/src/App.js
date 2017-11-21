@@ -92,7 +92,7 @@ class App extends Component {
                   /> )}
                   </div>
                   <br/>
-                  <table className="table table-bordered">
+                  <table className="table table-bordered table-dark">
                       <tbody>
                       <tr className="bg-primary receipt-table">
                           <th>Product</th>

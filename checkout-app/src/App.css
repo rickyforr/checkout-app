@@ -58,6 +58,7 @@ tr.receipt-table {
 
 nav {
   margin-bottom: 50px;
+  background: linear-gradient(#1175d8, #163b60);
 }
 
 img.store-logo {
@@ -71,13 +72,22 @@ img.store-logo {
 }
 
 button.cart {
-  max-height: 30px;
+  max-height: 29px;
+  background: linear-gradient(#1175d8, #163b60);
+  border: none;
 }
-
 label.cart {
   color: #1175d8;
   font-weight: bold;
   margin: 5px;
+}
+
+button.btn.btn-primary.cart.add {
+  border-radius: 0 5px 5px 0;
+}
+
+button.btn.btn-primary.cart.remove {
+  border-radius: 5px 0 0 5px;
 }
 
 span.inventory {
@@ -102,11 +112,12 @@ span.inventory > p {
 input {
   max-width: 50px;
   text-align: center;
+  max-height: 29px;
 }
 
 input:focus {
   outline: none;
-  border: 1px solid #1175d8
+  border: 2px solid #1175d8
 }
 
 p.alert-message {
