@@ -17,7 +17,7 @@ test('updateCart adds products to cart and remove same amount from inventory', (
     );
 });
 
-test('getSubtotal takes in cart and inventory and returns the current subtotal', () => {
+test('getSubtotal takes cart and inventory and returns the current subtotal', () => {
     const state = {
         "cart": [
             {"id": 1, "product": "eggs", "quantity": 2, "price": 3, "sale": 1.50, "inventory": 18},
@@ -32,11 +32,11 @@ test('getSubtotal takes in cart and inventory and returns the current subtotal',
     expect(finSubtotalState).toEqual(16);
 });
 
-test('getDiscount takes in cart and inventory and returns the current total discount', () => {
+test('getDiscount takes cart and returns the current total discount', () => {
     const state = {
         "cart": [
             {"id": 1, "product": "eggs", "quantity": 2, "price": 3, "sale": 1, "inventory": 20, "discount": {"type": "SALE"}},
-            {"id": 2, "product": "cookies", "quantity": 0, "price": 5, "inventory": 15, "discount": {"type": "NONE"}},
+            {"id": 2, "product": "cookies", "quantity": 3, "price": 5, "inventory": 15, "discount": {"type": "2FOR1"}},
             {"id": 3, "product": "steak", "quantity": 0,  "price": 15, "inventory": 10, "discount": {"type": "NONE"}}
         ],
         "subtotal": 0,
@@ -44,7 +44,7 @@ test('getDiscount takes in cart and inventory and returns the current total disc
     };
 
     const finDiscountState = getDiscount(state.cart);
-    expect(finDiscountState).toEqual(4);
+    expect(finDiscountState).toEqual(9);
 });
 
 

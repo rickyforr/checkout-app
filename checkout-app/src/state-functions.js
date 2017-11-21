@@ -19,16 +19,6 @@ export function getSubtotal (cart) {
     return sum.reduce((sum, value) => sum + value, 0);
 }
 
-export function getDiscountType (cart) {
-    const sum = [];
-    cart.forEach(function(element){
-        if (element.sale) {
-            sum.push((element.price - element.sale) * element.quantity)
-        }
-    });
-    return sum.reduce((sum, value) => sum + value, 0);
-}
-
 export function getDiscount (cart) {
     const sum = [];
     cart.forEach(function(element) {

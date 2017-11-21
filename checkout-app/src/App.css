@@ -63,12 +63,6 @@ nav {
 
 img.store-logo {
   width: 50px;
-  float: left;
-}
-
-.date {
-  text-align: right;
-  color: white;
 }
 
 button.cart {
@@ -80,6 +74,10 @@ label.cart {
   color: #1175d8;
   font-weight: bold;
   margin: 5px;
+}
+
+button.btn.btn-primary.cart:hover {
+  box-shadow: inset 0 0 0 2px lightskyblue;
 }
 
 button.btn.btn-primary.cart.add {
@@ -118,14 +116,6 @@ input {
 input:focus {
   outline: none;
   border: 2px solid #1175d8
-}
-
-p.alert-message {
-  color: tomato;
-  font-size: .7em;
-  position: absolute;
-  top: 0;
-  right: 0;
 }
 
 .brand {
