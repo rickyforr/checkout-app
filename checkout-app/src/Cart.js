@@ -36,7 +36,6 @@ class Cart extends Component {
         this.msg.error(message, {
             time: 2000,
             type: 'error',
-
         })
     };
 
@@ -52,7 +51,7 @@ class Cart extends Component {
         const addButton =  this.props.cart.inventory < this.state.quantity ||  Number(this.state.quantity) <= 0 ?
             'disable' : '';
         const removeButton = Number(this.state.quantity) > Number(this.props.cart.quantity) ||  Number(this.state.quantity) <= 0 ?
-           'disable'  : '';
+            'disable'  : '';
 
         return (
             <div className="row justify-content-center">
@@ -77,5 +76,4 @@ class Cart extends Component {
         );
     }
 }
-
 export default Cart;
