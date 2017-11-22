@@ -67,7 +67,7 @@ span.inventory > p {
   font-size: .8em;
 }
 input {
-  max-width: 50px;
+  width: 50px;
   text-align: center;
   max-height: 29px;
 }
