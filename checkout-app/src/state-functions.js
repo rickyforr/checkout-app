@@ -44,13 +44,14 @@ export function getDiscount (cart) {
                 break;
             case 'BUY4':
                 let amount = element.quantity % 4;
+                let divideds;
                 if (!amount && element.quantity >= 4) {
-                    divided = element.quantity / 4
+                    divideds = element.quantity / 4
                 } else  {
-                    divided = (element.quantity - amount) / 4;
+                    divideds = (element.quantity - amount) / 4;
                 }
-                if (divided) {
-                    sum.push(10 * divided);
+                if (divideds) {
+                    sum.push(10 * divideds);
                 } else {
                     sum.push(0);
                 }
