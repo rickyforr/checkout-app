@@ -16,17 +16,28 @@ class Receipt extends Component {
     saleType() {
         switch(this.props.cart.discount.type) {
             case 'SALE':
-                if (this.props.cart.sale && this.props.cart.quantity) {
-                return (<p className="promo">SALE ${this.props.cart.sale}</p>);
+                if (this.props.cart.discount.price && this.props.cart.quantity) {
+                return (<p className="promo">SALE ${this.props.cart.discount.price}</p>);
                 }
                 break;
             case '2FOR1':
-                if (this.props.cart.quantity > 1) {
+                if (this.props.cart.quantity >= 2) {
                     return (
                         <p className="promo">
                             2FOR1 x {this.props.cart.quantity % 2 === 0 ?
                             this.props.cart.quantity / 2 :
                             (this.props.cart.quantity - 1) / 2}
+                        </p>);
+                }
+                break;
+            case 'BUY4':
+                if (this.props.cart.quantity >= 4) {
+                    return (
+                        <p className="promo">
+                            4 @ ${this.props.cart.discount.price} x {
+                            this.props.cart.quantity % 4 === 0 ?
+                            this.props.cart.quantity / 4 :
+                            (this.props.cart.quantity - (this.props.cart.quantity % 4)) / 4}
                         </p>);
                 }
                 break;
@@ -36,8 +47,8 @@ class Receipt extends Component {
     discountType() {
         switch(this.props.cart.discount.type) {
             case 'SALE':
-                if (this.props.cart.sale && this.props.cart.quantity) {
-                    return ( <p className="promo">-{(this.props.cart.price - this.props.cart.sale) * this.props.cart.quantity}</p>);
+                if (this.props.cart.discount.price && this.props.cart.quantity) {
+                    return ( <p className="promo">-{(this.props.cart.price - this.props.cart.discount.price) * this.props.cart.quantity}</p>);
                 }
                 break;
                 case '2FOR1':
@@ -51,6 +62,19 @@ class Receipt extends Component {
                     }
                     if (divided) {
                         return (<p className="promo">-{this.props.cart.price * divided}</p>)
+                    } else {
+                        return (<p/>)
+                    }
+                    break;
+                case 'BUY4':
+                    remainder = this.props.cart.quantity % 4;
+                    if (!remainder && this.props.cart.quantity >= 4) {
+                        divided = this.props.cart.quantity / 4
+                    } else  {
+                        divided = (this.props.cart.quantity - remainder) / 4;
+                    }
+                    if (divided) {
+                        return (<p className="promo">-{10* divided}</p>);
                     } else {
                         return (<p/>)
                     }

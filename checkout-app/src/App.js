@@ -17,19 +17,19 @@ class App extends Component {
                     "id": 1,
                     "product": "eggs",
                     "quantity": 0,
-                    "image": 'http://www.eatbydate.com/wp-content/uploads/Eggs1.jpg',
+                    "image": 'http://res.cloudinary.com/lyvtg7cjl/image/upload/v1511334751/eggs_h551ml.png',
                     "price": 3,
                     "inventory": 20,
-                    "sale": 1,
                     "discount": {
-                        "type": "SALE"
+                        "type": "SALE",
+                        "price": 1
                     }
                 },
                 {
                     "id": 2,
                     "product": "cookies",
                     "quantity": 0,
-                    "image": 'http://d111vui60acwyt.cloudfront.net/product_photos/33961854/smart_20cookie_20pic_20copy_original.jpg',
+                    "image": 'http://res.cloudinary.com/lyvtg7cjl/image/upload/v1511334751/cookie_cbtctw.png',
                     "price": 5,
                     "inventory": 15,
                     "discount": {
@@ -40,11 +40,12 @@ class App extends Component {
                     "id": 3,
                     "product": "steak",
                     "quantity": 0,
-                    "image": 'http://static.seriouseats.com/1/braestar/live/pages/steak/images/ribeye.png',
+                    "image": 'http://res.cloudinary.com/lyvtg7cjl/image/upload/v1511334755/ribeye_j2oqob.png',
                     "price": 15,
                     "inventory": 10,
                     "discount": {
-                        "type": null
+                        "type": 'BUY4',
+                        "price": 50
                     }
                 }
             ],

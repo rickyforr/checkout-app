@@ -1,81 +1,47 @@
 .App {
   text-align: center;
 }
-
-div.image {
-  border-top: solid 0.5px #D3D3D3;
-  border-left: solid 0.5px #D3D3D3;
-  border-bottom: solid 0.5px #D3D3D3;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
-  margin-top: 5px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  min-height: 70px;
-}
-
-div.label {
-  border-top: solid 0.5px #D3D3D3;
-  border-bottom: solid 0.5px #D3D3D3;
-  margin-top: 5px;
-  padding-top: 15px;
-}
-
-@media only screen and (max-width: 500px) {
-  div.label {
-    font-size: 0.7em;
-    max-width: 50px;
-  }
-}
-
-div.cart-controls {
-  border-top: solid 0.5px #D3D3D3;
-  border-right: solid 0.5px #D3D3D3;
-  border-bottom: solid 0.5px #D3D3D3;
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
-  padding-top: 15px;
-  margin-top: 5px;
-}
-
-div.cart-container {
-  max-width: 800px;
-}
-
-@media only screen and (max-width: 500px) {
-  button {
-    width: 5px;
-  }
-}
-
-th {
-  text-align: center;
-}
-
-tr.receipt-table {
-  color: white;
-}
-
 nav {
   margin-bottom: 50px;
   background: linear-gradient(#1175d8, #163b60);
 }
 
+div.cart-container {
+  max-width: 800px;
+}
+li {
+  margin-top: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  min-height: 90px;
+  min-width: 600px;
+  box-shadow: 0 3px 5px 0 #ccc;
+}
+@media only screen and (max-width: 500px) {
+  li {
+    max-width: 330px;
+    min-width: unset;
+    margin-right: 50px
+  }
+}
 img.store-logo {
   width: 50px;
 }
-
 button.cart {
   max-height: 29px;
   background: linear-gradient(#1175d8, #163b60);
   border: none;
+}
+@media only screen and (max-width: 500px) {
+  button {
+    width: 5px;
+  }
 }
 label.cart {
   color: #1175d8;
   font-weight: bold;
   margin: 5px;
 }
-
 button.btn.btn-primary.cart:hover {
   box-shadow: inset 0 0 0 2px lightskyblue;
 }
@@ -83,11 +49,9 @@ button.btn.btn-primary.cart:hover {
 button.btn.btn-primary.cart.add {
   border-radius: 0 5px 5px 0;
 }
-
 button.btn.btn-primary.cart.remove {
   border-radius: 5px 0 0 5px;
 }
-
 span.inventory {
   position: absolute;
   left: 0;
@@ -98,40 +62,30 @@ span.inventory {
   background: #1175d8;
   border-top-left-radius: 2px;
   border-bottom-right-radius: 5px;
-  -moz-box-shadow:   0 3px 5px 0 #ccc;
-  -webkit-box-shadow: 0 3px 5px 0 #ccc;
-  box-shadow:         0 3px 5px 0 #ccc;
 }
-
 span.inventory > p {
   font-size: .8em;
 }
-
 input {
   max-width: 50px;
   text-align: center;
   max-height: 29px;
 }
-
 input:focus {
   outline: none;
   border: 2px solid #1175d8
-}
-
-.brand {
-  color: white;
 }
 
 table.table {
   max-width: 600px;
   margin: auto;
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+th {
+  text-align: center;
 }
-
+tr.receipt-table {
+  color: white;
+}
 .promo {
   font-size: 0.8em;
   font-style: italic;
