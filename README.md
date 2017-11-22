@@ -31,4 +31,4 @@ App will run on local port 3000. Go to http://localhost:3000/ in your browser to
 ## Tests
 `npm test` will run jest tests.
 state function logic is covered in state-function.test.js
-component rendering tests are in App.test.js
+component rendering tests are in App.test, Cart.test, Receipt.test and Total.test.js
