@@ -24,8 +24,9 @@ react-alerts was used to display messages that enhance the UX. A user will be pr
 Most of the styling was done using Bootstrap 4 as well as some costume CSS contained in the App.css file.
 
 ## Getting Started
-clone repository and run `npm start` from the command line 
-app will run on local port 3000. Go to http://localhost:3000/ in your browser to see the app.
+clone repository and cd into checkout-app run `npm install` to install dependencies. 
+Then run `npm start` from the command line. 
+App will run on local port 3000. Go to http://localhost:3000/ in your browser to see the app.
 
 ## Tests
 `npm test` will run jest tests.
