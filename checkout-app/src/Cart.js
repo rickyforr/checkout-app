@@ -47,12 +47,23 @@ class Cart extends Component {
         transition: 'scale'
     };
 
-    render() {
-        const addButton =  this.props.cart.inventory < this.state.quantity ||  Number(this.state.quantity) <= 0 ?
-            'disable' : '';
-        const removeButton = Number(this.state.quantity) > Number(this.props.cart.quantity) ||  Number(this.state.quantity) <= 0 ?
-            'disable'  : '';
+    addButton = (inventory, quantity) => {
+        if (inventory < quantity ||  Number(quantity) <= 0) {
+           return   'disable'
+        } else {
+            return ''
+        }
+    };
 
+   removeButton = (quantity) => {
+        if (Number(quantity) > Number(quantity) ||  Number(quantity) <= 0) {
+            return  'disable'
+        } else {
+          return '';
+        }
+   };
+
+    render() {
         return (
             <div className="row justify-content-center product">
                 <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
@@ -64,11 +75,13 @@ class Cart extends Component {
                     <label className="cart">{this.props.cart.product}</label>
                 </div>
                 <div className="col-5 cart-controls">
-                    <button className="btn btn-primary cart remove" onClick={(e) => this.handleRemoveProduct(e) } disabled={removeButton}>
+                    <button className="btn btn-primary cart remove"
+                            onClick={(e) => this.handleRemoveProduct(e) }
+                            disabled={this.removeButton(this.state.quantity)}>
                         <i className="fa fa-minus" aria-hidden="true"/>
                     </button>
                     <input type="number" max={this.props.cart.inventory} min={0} onInput = {this.handleQuantity} placeholder='#' value={this.state.quantity}/>
-                    <button className="btn btn-primary cart add" onClick={(e) => this.handleAddProduct(e) } disabled={addButton}>
+                    <button className="btn btn-primary cart add" onClick={(e) => this.handleAddProduct(e) } disabled={this.addButton(this.props.cart.inventory, this.state.quantity)}>
                         <i className="fa fa-plus" aria-hidden="true"/>
                     </button>
                 </div>

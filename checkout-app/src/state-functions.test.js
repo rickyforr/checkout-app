@@ -1,4 +1,4 @@
-import { updateCart, updateInventory, getSubtotal, getDiscount } from './state-functions';
+import { updateCart, getSubtotal, getDiscount } from './state-functions';
 
 test('updateCart adds products to cart and remove same amount from inventory', () => {
     const state = {

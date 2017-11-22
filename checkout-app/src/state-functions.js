@@ -1,5 +1,5 @@
-export function updateCart (cartObj, quantity, id) {
-   const cart = cartObj.map((product) => {
+export function updateCart (cart, quantity, id) {
+   const cartUpdated = cart.map((product) => {
        if (product.id === id) {
            if (quantity <= product.inventory) {
                 product.quantity = product.quantity + Number(quantity);
@@ -8,7 +8,7 @@ export function updateCart (cartObj, quantity, id) {
         }
         return product;
     });
-   return cart
+   return cartUpdated
 }
 
 export function getSubtotal (cart) {
