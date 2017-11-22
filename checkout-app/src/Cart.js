@@ -48,15 +48,15 @@ class Cart extends Component {
     };
 
     addButton = (inventory, quantity) => {
-        if (inventory < quantity ||  Number(quantity) <= 0) {
+        if (inventory < quantity ||  quantity <= 0) {
            return   'disable'
         } else {
             return ''
         }
     };
 
-   removeButton = (quantity) => {
-        if (Number(quantity) > Number(quantity) ||  Number(quantity) <= 0) {
+   removeButton = (cart, quantity) => {
+        if (cart <= 0 || quantity > cart) {
             return  'disable'
         } else {
           return '';
@@ -77,7 +77,7 @@ class Cart extends Component {
                             <label className="cart">{this.props.cart.product}</label>
                         </div>
                         <div className="col-6 cart">
-                            <button className="btn btn-primary cart remove" onClick={(e) => this.handleRemoveProduct(e) } disabled={this.removeButton(this.state.quantity)}>
+                            <button className="btn btn-primary cart remove" onClick={(e) => this.handleRemoveProduct(e) } disabled={this.removeButton(this.props.cart.quantity, this.state.quantity)}>
                                 <i className="fa fa-minus" aria-hidden="true"/>
                             </button>
                             <input type="number" max={this.props.cart.inventory} min={0} onInput = {this.handleQuantity} placeholder='#' value={this.state.quantity}/>

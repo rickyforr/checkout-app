@@ -41,6 +41,8 @@ class Receipt extends Component {
                         </p>);
                 }
                 break;
+            default:
+                    return (<p/>);
         }
     }
 
@@ -54,7 +56,7 @@ class Receipt extends Component {
                 case '2FOR1':
                     const quantity = this.props.cart.quantity;
                     let remainder = quantity % 2;
-                    let divided;
+                    let divided = 0;
                     if (!remainder) {
                         divided = quantity / 2
                     } else {
@@ -67,18 +69,21 @@ class Receipt extends Component {
                     }
                     break;
                 case 'BUY4':
-                    remainder = this.props.cart.quantity % 4;
-                    if (!remainder && this.props.cart.quantity >= 4) {
-                        divided = this.props.cart.quantity / 4
+                    let divideds;
+                    let remainders = this.props.cart.quantity % 4;
+                    if (!remainders && this.props.cart.quantity >= 4) {
+                        divideds = this.props.cart.quantity / 4
                     } else  {
-                        divided = (this.props.cart.quantity - remainder) / 4;
+                        divideds = (this.props.cart.quantity - remainders) / 4;
                     }
-                    if (divided) {
-                        return (<p className="promo">-{10* divided}</p>);
+                    if (divideds) {
+                        return (<p className="promo">-{10* divideds}</p>);
                     } else {
                         return (<p/>)
                     }
                     break;
+            default:
+                return (<p/>);
         }
     }
 

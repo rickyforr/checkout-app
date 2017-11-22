@@ -4,10 +4,7 @@ import logo from './checkout-logo.png';
 
 
 class Header extends Component {
-    shouldComponentUpdate(nextProps) {
-        console.log('RECEIPT COMPONENT', nextProps)
-        return true
-    }
+
     render() {
         return (
             <nav className="navbar navbar-light bg-primary ">

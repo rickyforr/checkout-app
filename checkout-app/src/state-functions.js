@@ -24,8 +24,8 @@ export function getDiscount (cart) {
     cart.forEach(function(element) {
         switch (element.discount.type) {
             case 'SALE':
-                if (element.sale) {
-                    sum.push((element.discount.price - element.sale) * element.quantity)
+                if (element.discount.type) {
+                    sum.push((element.price - element.discount.price) * element.quantity)
                 }
                 break;
             case '2FOR1':
@@ -43,11 +43,11 @@ export function getDiscount (cart) {
                 }
                 break;
             case 'BUY4':
-                remainder = element.quantity % 4;
-                if (!remainder && element.quantity >= 4) {
+                let amount = element.quantity % 4;
+                if (!amount && element.quantity >= 4) {
                     divided = element.quantity / 4
                 } else  {
-                    divided = (element.quantity - remainder) / 4;
+                    divided = (element.quantity - amount) / 4;
                 }
                 if (divided) {
                     sum.push(10 * divided);
@@ -57,5 +57,5 @@ export function getDiscount (cart) {
                 break;
         }
     });
-    return sum.reduce((sum, value) => sum + value, 0);;
+    return sum.reduce((sum, value) => sum + value, 0);
 }
