@@ -1,4 +1,4 @@
-.App {
+.app {
   text-align: center;
 }
 nav {
@@ -21,7 +21,7 @@ li {
   li {
     max-width: 330px;
     min-width: unset;
-    margin-right: 50px
+    margin-right: 50px;
   }
 }
 img.store-logo {
@@ -64,7 +64,7 @@ span.inventory {
   border-bottom-right-radius: 5px;
 }
 span.inventory > p {
-  font-size: .8em;
+  font-size: 0.8em;
 }
 input {
   width: 50px;
@@ -73,7 +73,7 @@ input {
 }
 input:focus {
   outline: none;
-  border: 2px solid #1175d8
+  border: 2px solid #1175d8;
 }
 
 table.table {
