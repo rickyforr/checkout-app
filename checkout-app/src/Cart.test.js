@@ -1,45 +1,52 @@
-import Cart from './Cart';
-import React from 'react';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import {mount} from 'enzyme';
+import Cart from "./Cart";
+import React from "react";
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import { mount } from "enzyme";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const cart =
-    {
-        "id": 1,
-        "product": "eggs",
-        "quantity": 1,
-        "image": 'http://www.eatbydate.com/wp-content/uploads/Eggs1.jpg',
-        "price": 3,
-        "inventory": 20,
-        "sale": 1,
-        "discount": {
-            "type": "SALE"
-        }
-    };
+const cart = {
+  id: 1,
+  product: "test_product",
+  quantity: 1,
+  image: "test.png",
+  price: 3,
+  inventory: 20,
+  sale: 1,
+  discount: {
+    type: "SALE"
+  }
+};
 
-test('Cart calls handleUpdateProduct when add button is clicked', () => {
-    const addButton = jest.fn();
-    const handleUpdateProduct = jest.fn();
-    const wrapper = mount(
-        <Cart cart={cart} addButton={addButton} handleUpdateProduct={handleUpdateProduct}/>
-    );
+it("should invoke handleUpdateProduct when add button is clicked", () => {
+  const addButton = jest.fn();
+  const handleUpdateProduct = jest.fn();
+  const component = mount(
+    <Cart
+      cart={cart}
+      addButton={addButton}
+      handleUpdateProduct={handleUpdateProduct}
+    />
+  );
 
-    const p = wrapper.find('.btn.btn-primary.cart.add');
-    p.simulate('click');
-    expect(handleUpdateProduct).toBeCalledWith(1, 1, "eggs");
+  const p = component.find("[data-name='add-button']");
+  p.simulate("click");
+  expect(handleUpdateProduct).toBeCalledWith(1, 1, "test_product");
 });
 
-test('Cart calls handleUpdateProduct when remove button is clicked', () => {
-    const removeButton = jest.fn();
-    const handleUpdateProduct = jest.fn();
-    const wrapper = mount(
-        <Cart cart={cart} removeButton={removeButton} handleUpdateProduct={handleUpdateProduct}/>
-    );
+it("should invoke handleUpdateProduct when remove button is clicked", () => {
+  const removeButton = jest.fn();
+  const handleUpdateProduct = jest.fn();
+  const component = mount(
+    <Cart
+      cart={cart}
+      removeButton={removeButton}
+      handleUpdateProduct={handleUpdateProduct}
+    />
+  );
 
-    const p = wrapper.find('.btn.btn-primary.cart.remove');
-    p.simulate('click');
-    expect(handleUpdateProduct).toBeCalledWith(1, -1, "eggs");
+  const p = component.find("[data-name='remove-button']");
+  p.simulate("click");
+  expect(handleUpdateProduct).toBeCalledWith(1, -1, "test_product");
 });

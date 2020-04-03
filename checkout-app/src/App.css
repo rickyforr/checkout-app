@@ -1,6 +1,7 @@
 .app {
   text-align: center;
 }
+
 nav {
   margin-bottom: 50px;
   background: linear-gradient(#1175d8, #163b60);
@@ -9,6 +10,7 @@ nav {
 div.cart-container {
   max-width: 800px;
 }
+
 li {
   margin-top: 15px;
   padding-top: 15px;
@@ -24,9 +26,11 @@ li {
     margin-right: 50px;
   }
 }
+
 img.store-logo {
   width: 50px;
 }
+
 button.cart {
   max-height: 29px;
   background: linear-gradient(#1175d8, #163b60);
@@ -37,11 +41,7 @@ button.cart {
     width: 5px;
   }
 }
-label.cart {
-  color: #1175d8;
-  font-weight: bold;
-  margin: 5px;
-}
+
 button.btn.btn-primary.cart:hover {
   box-shadow: inset 0 0 0 2px lightskyblue;
 }
@@ -49,9 +49,11 @@ button.btn.btn-primary.cart:hover {
 button.btn.btn-primary.cart.add {
   border-radius: 0 5px 5px 0;
 }
+
 button.btn.btn-primary.cart.remove {
   border-radius: 5px 0 0 5px;
 }
+
 span.inventory {
   position: absolute;
   left: 0;
@@ -63,14 +65,17 @@ span.inventory {
   border-top-left-radius: 2px;
   border-bottom-right-radius: 5px;
 }
+
 span.inventory > p {
   font-size: 0.8em;
 }
+
 input {
   width: 50px;
   text-align: center;
   max-height: 29px;
 }
+
 input:focus {
   outline: none;
   border: 2px solid #1175d8;
@@ -79,13 +84,17 @@ input:focus {
 table.table {
   max-width: 600px;
   margin: auto;
+  margin-bottom: 50px;
 }
+
 th {
   text-align: center;
 }
+
 tr.receipt-table {
   color: white;
 }
+
 .promo {
   font-size: 0.8em;
   font-style: italic;

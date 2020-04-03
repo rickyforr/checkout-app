@@ -29,31 +29,15 @@ export const getDiscount = cart => {
         }
         break;
       case "2FOR1":
-        let remainderFrom2 = product.quantity % 2;
-        let dividedBy2;
-        if (!remainderFrom2) {
-          dividedBy2 = product.quantity / 2;
-        } else {
-          dividedBy2 = (product.quantity - 1) / 2;
-        }
+        const dividedBy2 = Math.floor(product.quantity / 2);
         if (dividedBy2) {
           sum.push(product.price * dividedBy2);
-        } else {
-          sum.push(0);
         }
         break;
       case "BUY4":
-        let amount = product.quantity % 4;
-        let divideds;
-        if (!amount && product.quantity >= 4) {
-          divideds = product.quantity / 4;
-        } else {
-          divideds = (product.quantity - amount) / 4;
-        }
-        if (divideds) {
-          sum.push(10 * divideds);
-        } else {
-          sum.push(0);
+        const dividedBy4 = Math.floor(product.quantity / 4);
+        if (dividedBy4) {
+          sum.push(10 * dividedBy4);
         }
         break;
     }

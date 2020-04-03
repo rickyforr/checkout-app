@@ -1,0 +1,10 @@
+.counter {
+  display: flex;
+  flex-direction: row;
+}
+
+label.cart {
+  color: #1175d8;
+  font-weight: bold;
+  margin: 5px;
+}

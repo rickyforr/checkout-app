@@ -8,6 +8,9 @@ import Total from "./Total";
 import { updateCart, getSubtotal, getDiscount } from "./state-functions";
 import Header from "./Header";
 
+/*
+ * Renders the "root" component for the checkout app.
+ */
 class App extends Component {
   constructor(props) {
     super(props);

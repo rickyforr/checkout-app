@@ -1,105 +1,102 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
+/*
+ * Renders a component for displaying the current order receipt.
+ */
 class Receipt extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { subtotal: 0 };
-    }
+  constructor(props) {
+    super(props);
+    this.state = { subtotal: 0 };
+  }
 
-    componentWillReceiveProps() {
-        const total = this.props.cart.quantity * this.props.cart.price;
-        this.setState({ subtotal: total });
-        return false
-    }
+  componentWillReceiveProps() {
+    const subtotal = this.props.cart.quantity * this.props.cart.price;
+    this.setState({ subtotal });
+  }
 
-    saleType() {
-        switch(this.props.cart.discount.type) {
-            case 'SALE':
-                if (this.props.cart.discount.price && this.props.cart.quantity) {
-                return (<p className="promo">SALE ${this.props.cart.discount.price}</p>);
-                }
-                break;
-            case '2FOR1':
-                if (this.props.cart.quantity >= 2) {
-                    return (
-                        <p className="promo">
-                            2FOR1 x {this.props.cart.quantity % 2 === 0 ?
-                            this.props.cart.quantity / 2 :
-                            (this.props.cart.quantity - 1) / 2}
-                        </p>);
-                }
-                break;
-            case 'BUY4':
-                if (this.props.cart.quantity >= 4) {
-                    return (
-                        <p className="promo">
-                            4 @ ${this.props.cart.discount.price} x {
-                            this.props.cart.quantity % 4 === 0 ?
-                            this.props.cart.quantity / 4 :
-                            (this.props.cart.quantity - (this.props.cart.quantity % 4)) / 4}
-                        </p>);
-                }
-                break;
-            default:
-                    return (<p/>);
+  discountType() {
+    const { discount, quantity } = this.props.cart;
+    switch (discount.type) {
+      case "SALE":
+        if (discount.price && quantity) {
+          return (
+            <p data-name="sale-promo" className="promo">
+              SALE ${discount.price}
+            </p>
+          );
         }
-    }
-
-    discountType() {
-        switch(this.props.cart.discount.type) {
-            case 'SALE':
-                if (this.props.cart.discount.price && this.props.cart.quantity) {
-                    return ( <p className="promo">-{(this.props.cart.price - this.props.cart.discount.price) * this.props.cart.quantity}</p>);
-                }
-                break;
-                case '2FOR1':
-                    const quantity = this.props.cart.quantity;
-                    let remainder = quantity % 2;
-                    let divided = 0;
-                    if (!remainder) {
-                        divided = quantity / 2
-                    } else {
-                        divided = (quantity - 1) / 2;
-                    }
-                    if (divided) {
-                        return (<p className="promo">-{this.props.cart.price * divided}</p>)
-                    } else {
-                        return (<p/>)
-                    }
-                    break;
-                case 'BUY4':
-                    let divideds;
-                    let remainders = this.props.cart.quantity % 4;
-                    if (!remainders && this.props.cart.quantity >= 4) {
-                        divideds = this.props.cart.quantity / 4
-                    } else  {
-                        divideds = (this.props.cart.quantity - remainders) / 4;
-                    }
-                    if (divideds) {
-                        return (<p className="promo">-{10* divideds}</p>);
-                    } else {
-                        return (<p/>)
-                    }
-                    break;
-            default:
-                return (<p/>);
+        break;
+      case "2FOR1":
+        if (quantity >= 2) {
+          return (
+            <p data-name="2for1-promo" className="promo">
+              2FOR1 x {quantity % 2 === 0 ? quantity / 2 : (quantity - 1) / 2}
+            </p>
+          );
         }
+        break;
+      case "BUY4":
+        if (quantity >= 4) {
+          return (
+            <p data-name="buy4-promo" className="promo">
+              4 @ ${discount.price} x{" "}
+              {quantity % 4 === 0
+                ? quantity / 4
+                : (quantity - (quantity % 4)) / 4}
+            </p>
+          );
+        }
+        break;
+      default:
+        return <p />;
     }
+  }
 
-    render() {
-        return (
-            <tr className="table-dark">
-                <td>{this.props.cart.product}</td>
-                <td >{this.props.cart.quantity} @ ${this.props.cart.price}
-                    {this.saleType()}
-                </td>
-                <td>
-                    {this.state.subtotal}
-                    {this.discountType()}
-                </td>
-            </tr>
-        );
+  discountAmount() {
+    const { discount, price, quantity } = this.props.cart;
+    switch (discount.type) {
+      case "SALE":
+        if (discount.price && quantity) {
+          return (
+            <p data-name="sale-discount" className="promo">
+              -{(price - discount.price) * quantity}
+            </p>
+          );
+        }
+        break;
+      case "2FOR1":
+        const dividedby2 = Math.floor(quantity / 2);
+        if (dividedby2) {
+          return <p className="promo">-{price * dividedby2}</p>;
+        }
+        break;
+      case "BUY4":
+        const dividedBy4 = Math.floor(quantity / 4);
+        if (dividedBy4) {
+          return <p className="promo">-{10 * dividedBy4}</p>;
+        }
+        break;
+      default:
+        return <p />;
     }
+  }
+
+  render() {
+    const { product, quantity, price } = this.props.cart;
+    return (
+      <tr className="table-dark">
+        <td>{product}</td>
+        <td>
+          {quantity} @ ${price}
+          {this.discountType()}
+        </td>
+        <td>
+          {this.state.subtotal}
+          {this.discountAmount()}
+        </td>
+      </tr>
+    );
+  }
 }
 export default Receipt;
