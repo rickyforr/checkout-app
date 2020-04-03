@@ -31,7 +31,7 @@ class Receipt extends Component {
         if (quantity >= 2) {
           return (
             <p data-name="2for1-promo" className="promo">
-              2FOR1 x {quantity % 2 === 0 ? quantity / 2 : (quantity - 1) / 2}
+              2FOR1 x {Math.floor(quantity / 2)}
             </p>
           );
         }
@@ -40,10 +40,7 @@ class Receipt extends Component {
         if (quantity >= 4) {
           return (
             <p data-name="buy4-promo" className="promo">
-              4 @ ${discount.price} x{" "}
-              {quantity % 4 === 0
-                ? quantity / 4
-                : (quantity - (quantity % 4)) / 4}
+              4 @ ${discount.price} x {Math.floor(quantity / 4)}
             </p>
           );
         }
